@@ -1,6 +1,6 @@
 package models;
 
-public class Literal {
+public class Literal extends Predicate{
 
 	private char LiteralName;
 
@@ -15,6 +15,11 @@ public class Literal {
 
 	public void setLiteralName(char literalName) {
 		LiteralName = literalName;
+	}
+
+	@Override
+	public boolean isLiteral() {
+		return true;
 	}
 	
 	

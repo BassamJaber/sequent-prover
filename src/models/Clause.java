@@ -2,7 +2,7 @@ package models;
 
 import utils.Operation;
 
-public class Clause {
+public class Clause extends Predicate{
 	private Literal leftLiteral;
 	private Literal rightLiteral;
 	private Operation operation;
@@ -36,6 +36,11 @@ public class Clause {
 
 	public void setOperation(Operation operation) {
 		this.operation = operation;
+	}
+
+	@Override
+	public boolean isLiteral() {
+		return false;
 	}
 
 }

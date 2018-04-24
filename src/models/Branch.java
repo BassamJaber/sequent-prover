@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Branch {
 
-	private List<Clause> leftClauses;
-	private List<Clause> rightClauses;
+	private List<Predicate> leftPremises;
+	private List<Predicate> rightConclusion;
 	public Branch() {
 		super();
-		leftClauses = new ArrayList<Clause>();
-		rightClauses = new ArrayList<Clause>();
+		leftPremises = new ArrayList<Predicate>();
+		rightConclusion = new ArrayList<Predicate>();
 	}
 	
 	

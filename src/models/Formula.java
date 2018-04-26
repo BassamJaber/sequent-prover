@@ -1,5 +1,6 @@
 package models;
 
-public class Formula {
+public abstract class Formula {
 
+	public abstract boolean isLiteral();
 }

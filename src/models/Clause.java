@@ -1,33 +1,42 @@
 package models;
 
+import java.util.List;
+
 import utils.Operation;
 
-public class Clause extends Predicate{
-	private Literal leftLiteral;
-	private Literal rightLiteral;
+public class Clause extends Formula{
+	private List<Formula> leftFormula;
+	private List<Formula> rightFormula;
 	private Operation operation;
 
-	public Clause(Literal leftLiteral, Literal rightLiteral, Operation operation) {
+
+	public Clause() {
 		super();
-		this.leftLiteral = leftLiteral;
-		this.rightLiteral = rightLiteral;
+	}
+
+	public Clause(List<Formula> leftFormula, List<Formula> rightFormula, Operation operation) {
+		super();
+		this.leftFormula = leftFormula;
+		this.rightFormula = rightFormula;
 		this.operation = operation;
 	}
+	
+	
 
-	public Literal getLeftLiteral() {
-		return leftLiteral;
+	public List<Formula> getLeftFormula() {
+		return leftFormula;
 	}
 
-	public void setLeftLiteral(Literal leftLiteral) {
-		this.leftLiteral = leftLiteral;
+	public void setLeftFormula(List<Formula> leftFormula) {
+		this.leftFormula = leftFormula;
 	}
 
-	public Literal getRightLiteral() {
-		return rightLiteral;
+	public List<Formula> getRightFormula() {
+		return rightFormula;
 	}
 
-	public void setRightLiteral(Literal rightLiteral) {
-		this.rightLiteral = rightLiteral;
+	public void setRightFormula(List<Formula> rightFormula) {
+		this.rightFormula = rightFormula;
 	}
 
 	public Operation getOperation() {

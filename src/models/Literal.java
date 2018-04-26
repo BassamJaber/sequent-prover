@@ -1,6 +1,6 @@
 package models;
 
-public class Literal extends Predicate{
+public class Literal extends Formula{
 
 	private char LiteralName;
 

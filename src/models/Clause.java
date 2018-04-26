@@ -5,8 +5,8 @@ import java.util.List;
 import utils.Operation;
 
 public class Clause extends Formula{
-	private List<Formula> leftFormula;
-	private List<Formula> rightFormula;
+	private Formula leftFormula;
+	private Formula rightFormula;
 	private Operation operation;
 
 
@@ -14,28 +14,26 @@ public class Clause extends Formula{
 		super();
 	}
 
-	public Clause(List<Formula> leftFormula, List<Formula> rightFormula, Operation operation) {
+	public Clause(Formula leftFormula, Formula rightFormula, Operation operation) {
 		super();
 		this.leftFormula = leftFormula;
 		this.rightFormula = rightFormula;
 		this.operation = operation;
 	}
-	
-	
 
-	public List<Formula> getLeftFormula() {
+	public Formula getLeftFormula() {
 		return leftFormula;
 	}
 
-	public void setLeftFormula(List<Formula> leftFormula) {
+	public void setLeftFormula(Formula leftFormula) {
 		this.leftFormula = leftFormula;
 	}
 
-	public List<Formula> getRightFormula() {
+	public Formula getRightFormula() {
 		return rightFormula;
 	}
 
-	public void setRightFormula(List<Formula> rightFormula) {
+	public void setRightFormula(Formula rightFormula) {
 		this.rightFormula = rightFormula;
 	}
 
@@ -45,11 +43,6 @@ public class Clause extends Formula{
 
 	public void setOperation(Operation operation) {
 		this.operation = operation;
-	}
-
-	@Override
-	public boolean isLiteral() {
-		return false;
 	}
 
 }

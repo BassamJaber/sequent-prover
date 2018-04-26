@@ -17,10 +17,4 @@ public class Literal extends Formula{
 		LiteralName = literalName;
 	}
 
-	@Override
-	public boolean isLiteral() {
-		return true;
-	}
-	
-	
 }

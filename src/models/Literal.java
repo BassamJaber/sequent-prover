@@ -2,27 +2,41 @@ package models;
 
 public class Literal extends Formula {
 
-	private char LiteralName;
+	private String LiteralName;
 	private boolean isNegatedLiteral = false;
 
-	public Literal(char literalName) {
+	public Literal(String literalName) {
 		super();
 		LiteralName = literalName;
 		isNegatedLiteral = false;
 	}
 
-	public Literal(char literalName, boolean isNegatedLiteral) {
+	public Literal(String literalName, boolean isNegatedLiteral) {
 		super();
 		LiteralName = literalName;
 		this.isNegatedLiteral = isNegatedLiteral;
 	}
 
-	public char getLiteralName() {
+	
+	public boolean isNegatedLiteral() {
+		return isNegatedLiteral;
+	}
+
+	public void setNegatedLiteral(boolean isNegatedLiteral) {
+		this.isNegatedLiteral = isNegatedLiteral;
+	}
+
+	public String getLiteralName() {
 		return LiteralName;
 	}
 
-	public void setLiteralName(char literalName) {
+	public void setLiteralName(String literalName) {
 		LiteralName = literalName;
+	}
+	
+	@Override
+	public String toString() {
+		return (isNegatedLiteral)?"NOT"+ getLiteralName(): getLiteralName();
 	}
 
 }

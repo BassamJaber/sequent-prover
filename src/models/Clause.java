@@ -44,5 +44,10 @@ public class Clause extends Formula{
 	public void setOperation(Operation operation) {
 		this.operation = operation;
 	}
+	
+	@Override
+	public String toString() {
+		return getLeftFormula().toString()+" "+getOperation()+" "+getRightFormula().toString();
+	}
 
 }

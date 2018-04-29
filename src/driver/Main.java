@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			String formulaString = FileManager.openFileOrDie(null);
-			Formula formula=formulaParsing(formulaString);
+			Formula formula = formulaParsing(formulaString);
 			formula.printFormula();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not Found!");
@@ -26,14 +26,14 @@ public class Main {
 		Formula leftClause = null;
 		Formula rightClause = null;
 		Boolean isLeftClause = false;
-		Boolean isRightClause = false;
 		for (int i = 0; i < result.length; i++) {
-			System.out.println(result[i]);
-			String[] content = result[i].split(" ");
+			if (result[i].trim().equals("")) {
+				continue;
+			}
+			String[] content = result[i].trim().split(" ");
 			// in case we have an operation, queue the operation until the next
 			// formula is read
 			if (content.length == 1) {
-				System.out.println(content[0]);
 				SingleOperation = Operation.valueOf(content[0]);
 			} else {
 				/*
@@ -54,8 +54,6 @@ public class Main {
 						isLeftClause = true;
 					} else {
 						rightClause = new Clause(new Literal(content[0]), new Literal(content[2]), operation);
-						isLeftClause = false;
-						isRightClause = true;
 						leftClause = new Clause(leftClause, rightClause, SingleOperation);
 					}
 				} else if (content.length == 5) {
@@ -68,57 +66,55 @@ public class Main {
 					 * will be build recursively
 					 */
 					if (!isLeftClause) {
-						leftClause = new Clause(new Literal(content[1],true), new Literal(content[4],true), operation);
+						leftClause = new Clause(new Literal(content[1], true), new Literal(content[4], true),
+								operation);
 						isLeftClause = true;
 					} else {
-						rightClause = new Clause(new Literal(content[1],true), new Literal(content[4],true), operation);
-						isLeftClause = false;
-						isRightClause = true;
+						rightClause = new Clause(new Literal(content[1], true), new Literal(content[4], true),
+								operation);
 						leftClause = new Clause(leftClause, rightClause, SingleOperation);
 					}
-				}else if(content.length==4){
+				} else if (content.length == 4) {
 					/*
-					 *  in this case we have only one negation either in the first part of the formula
-					 *  or in the second part of the formula
+					 * in this case we have only one negation either in the
+					 * first part of the formula or in the second part of the
+					 * formula
 					 */
 					/*
-					 * if we have the first string as NOT, then the other literal will be positive,
-					 * otherwise, the second literal is negative
+					 * if we have the first string as NOT, then the other
+					 * literal will be positive, otherwise, the second literal
+					 * is negative
 					 */
-					if(Operation.valueOf(content[0])== Operation.NOT){
+					if (content[0].equals(Operation.NOT.toString())) {
 						operation = Operation.valueOf(content[2]);
 						/*
-						 * a clause could be a part of a larger clause, so we need
-						 * to have two different references for left and right and
-						 * will be build recursively
+						 * a clause could be a part of a larger clause, so we
+						 * need to have two different references for left and
+						 * right and will be build recursively
 						 */
 						if (!isLeftClause) {
-							leftClause = new Clause(new Literal(content[1],true), new Literal(content[3]), operation);
+							leftClause = new Clause(new Literal(content[1], true), new Literal(content[3]), operation);
 							isLeftClause = true;
 						} else {
-							rightClause = new Clause(new Literal(content[1],true), new Literal(content[3]), operation);
-							isLeftClause = false;
-							isRightClause = true;
+							rightClause = new Clause(new Literal(content[1], true), new Literal(content[3]), operation);
 							leftClause = new Clause(leftClause, rightClause, SingleOperation);
 						}
-					}else{
+					} else {
 						operation = Operation.valueOf(content[1]);
 						/*
-						 * a clause could be a part of a larger clause, so we need
-						 * to have two different references for left and right and
-						 * will be build recursively
+						 * a clause could be a part of a larger clause, so we
+						 * need to have two different references for left and
+						 * right and will be build recursively
 						 */
 						if (!isLeftClause) {
-							leftClause = new Clause(new Literal(content[0]), new Literal(content[3],true), operation);
+							leftClause = new Clause(new Literal(content[0]), new Literal(content[3], true), operation);
 							isLeftClause = true;
 						} else {
-							rightClause = new Clause(new Literal(content[0]), new Literal(content[3],true), operation);
-							isLeftClause = false;
-							isRightClause = true;
+							rightClause = new Clause(new Literal(content[0]), new Literal(content[3], true), operation);
 							leftClause = new Clause(leftClause, rightClause, SingleOperation);
-						}	
+						}
 					}
-					
+
 				}
 			}
 		}

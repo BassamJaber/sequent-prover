@@ -1,10 +1,8 @@
 package models;
 
-import java.util.List;
-
 import utils.Operation;
 
-public class Clause extends Formula{
+public class Clause extends Formula  implements Cloneable{
 	private Formula leftFormula;
 	private Formula rightFormula;
 	private Operation operation;
@@ -47,7 +45,17 @@ public class Clause extends Formula{
 	
 	@Override
 	public String toString() {
-		return getLeftFormula().toString()+" "+getOperation()+" "+getRightFormula().toString();
+		return "("+ getLeftFormula().toString()+" "+getOperation()+" "+getRightFormula().toString() +")";
+	}
+
+	@Override
+	public void printFormula() {
+		System.out.println(toString());
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return new Clause(getLeftFormula(),getRightFormula(),getOperation());
 	}
 
 }

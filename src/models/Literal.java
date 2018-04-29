@@ -17,7 +17,6 @@ public class Literal extends Formula {
 		this.isNegatedLiteral = isNegatedLiteral;
 	}
 
-	
 	public boolean isNegatedLiteral() {
 		return isNegatedLiteral;
 	}
@@ -33,10 +32,15 @@ public class Literal extends Formula {
 	public void setLiteralName(String literalName) {
 		LiteralName = literalName;
 	}
-	
+
 	@Override
 	public String toString() {
-		return (isNegatedLiteral)?"NOT"+ getLiteralName(): getLiteralName();
+		return (isNegatedLiteral) ? "NOT " + getLiteralName() : getLiteralName();
+	}
+
+	@Override
+	public void printFormula() {
+		System.out.println(toString());
 	}
 
 }
